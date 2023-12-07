@@ -12,7 +12,7 @@ pipeline {
         stage("build_cat") {
             steps {
                 echo "The test message build-cat"
-                echo '${WORKSPACE}'
+                ls '${WORKSPACE}'
             }
         }
         stage("Second step") {
