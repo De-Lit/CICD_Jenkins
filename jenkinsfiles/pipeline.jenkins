@@ -9,9 +9,10 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("First step") {
+        stage("build_cat") {
             steps {
-                echo "First step"
+                echo "The test message build-cat"
+                cat ${WORKSPACE}/src/cat/my_cat.c
             }
         }
         stage("Second step") {
