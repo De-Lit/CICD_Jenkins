@@ -12,7 +12,8 @@ pipeline {
         stage("build_cat") {
             steps {
                 echo "The test message build-cat"
-                pwd
+                echo $WORKSPACE
+                echo $PWD
             }
         }
         stage("Second step") {
