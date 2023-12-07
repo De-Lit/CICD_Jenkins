@@ -12,7 +12,7 @@ pipeline {
         stage("build_cat") {
             steps {
                 echo "The test message build-cat"
-                sh 'cat ${WORKSPACE}/src/SimpleBashUtils/cat/my_cat.c'
+                sh 'gcc ${WORKSPACE}/src/SimpleBashUtils/cat/my_cat.c'
             }
         }
         stage("Second step") {
