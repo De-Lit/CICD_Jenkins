@@ -9,8 +9,8 @@ pipeline {
         timestamps()
     }
     stages {
-        agent any
         stage("before_script") {
+            agent any
             sh 'until docker info; do sleep 1; done'
         }
         stage("build_cat") {
