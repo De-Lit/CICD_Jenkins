@@ -9,9 +9,12 @@ pipeline {
         timestamps()
     }
     stages {
+        agent any
+        stage("before_script") {
+            sh 'until docker info; do sleep 1; done'
+        }
         stage("build_cat") {
             agent {
-                sh 'until docker info; do sleep 1; done'
                 docker { image 'gcc' }
             }
             steps {
