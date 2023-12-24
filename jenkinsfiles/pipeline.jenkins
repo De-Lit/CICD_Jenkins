@@ -9,12 +9,6 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("before_script") {
-            agent any
-            steps {
-                sh 'until docker info; do sleep 1; done'
-            }
-        }
         stage("build_cat") {
             agent {
                 docker { image 'gcc' }
