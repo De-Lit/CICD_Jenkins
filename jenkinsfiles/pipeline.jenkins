@@ -3,23 +3,19 @@
 properties([disableConcurrentBuilds()])
 
 pipeline {
-    agent none
+    agent any
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
     stages {
         stage("build_cat") {
-            agent {
-                docker { image 'gcc' }
-            }
             steps {
                 echo "The test message build-cat"
                 sh 'gcc -v'
             }
         }
         stage("Second step") {
-            agent any
             steps {
                 echo "Second step"
             }
