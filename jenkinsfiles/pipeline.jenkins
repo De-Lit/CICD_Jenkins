@@ -11,7 +11,9 @@ pipeline {
     stages {
         stage("before_script") {
             agent any
-            sh 'until docker info; do sleep 1; done'
+            steps {
+                sh 'until docker info; do sleep 1; done'
+            }
         }
         stage("build_cat") {
             agent {
