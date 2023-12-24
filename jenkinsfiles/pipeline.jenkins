@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage("build_cat") {
             agent {
+                until docker info; do sleep 1; done
                 docker { image 'gcc' }
             }
             steps {
