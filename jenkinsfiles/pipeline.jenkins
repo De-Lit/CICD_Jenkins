@@ -12,7 +12,7 @@ pipeline {
         stage("build_cat") {
             steps {
                 echo "The test message build-cat"
-                sh 'gcc -v'
+                sh 'docker -v'
             }
         }
         stage("Second step") {
