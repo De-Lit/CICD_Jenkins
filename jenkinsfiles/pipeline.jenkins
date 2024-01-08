@@ -11,8 +11,9 @@ pipeline {
     stages {
         stage("build_cat") {
             agent {
-                docker { image 'gcc' }
+                docker { image 'gcc'
                 reuseNode true
+                }
             }
             steps {
                 echo "The test message build-cat"
