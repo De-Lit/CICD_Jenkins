@@ -10,14 +10,14 @@ pipeline {
     }
     stages {
         stage("build_cat") {
-            #agent {
-                #docker { image 'gcc'
-                #reuseNode true
-                #}
+            //agent {
+                //docker { image 'gcc'
+                //reuseNode true
+                //}
             }
             steps {
                 echo "The test message build-cat"
-                #sh 'gcc --version'
+                //sh 'gcc --version'
             }
         }
         stage("Second step") {
