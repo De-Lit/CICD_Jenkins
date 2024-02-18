@@ -9,21 +9,48 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("build_cat") {
-            //agent {
-                //docker { image 'gcc'
-                //reuseNode true
-                //}
-            //}
+        stage("build cat") {
             steps {
-                echo "The test message build-cat"
-                //sh 'gcc --version'
+                echo "build cat"
+                sh 'cd src/SimpleBashUtils/cat && make my_cat'
             }
         }
-        stage("Second step") {
+        stage("build grep") {
             steps {
-                echo "Second step"
+                echo "build grep"
+                sh 'cd src/SimpleBashUtils/grep && make my_grep'
             }
+        }
+        stage("cat code style test") {
+            steps {
+                echo "cat code style test"
+                sh """find src/SimpleBashUtils/cat -type f \\( -name "*.c" -o -name "*.h" \\) -exec clang-format -Werror -verbose -style=google -n {} +"""
+            }
+        }
+        stage("grep code style test") {
+            steps {
+                echo "grep code style test"
+                sh """find src/SimpleBashUtils/grep -type f \\( -name "*.c" -o -name "*.h" \\) -exec clang-format -Werror -verbose -style=google -n {} +"""
+            }
+        }
+        stage("cat integration test") {
+            steps {
+                echo "cat integration test"
+                sh 'cd src/SimpleBashUtils/cat && bash t_cat.sh'
+            }
+        }
+        stage("grep integration test") {
+            steps {
+                echo "grep integration test"
+                sh 'cd src/SimpleBashUtils/grep && bash t_grep.sh'
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'src/SimpleBashUtils/cat/my_cat'
+            archiveArtifacts artifacts: 'src/SimpleBashUtils/grep/my_grep'
+            cleanWs()
         }
     }
 }
