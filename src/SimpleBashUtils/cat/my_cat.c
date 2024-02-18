@@ -1,6 +1,6 @@
 #include "my_cat.h"
 
-int main(int argc, char **argv) { 
+int main(int argc, char **argv) {
   pars pars = {0};
   Parser(argc, argv, &pars);
   if (!pars.err) {
