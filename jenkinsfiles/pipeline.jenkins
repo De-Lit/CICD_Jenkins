@@ -14,7 +14,7 @@ pipeline {
                 //docker { image 'gcc'
                 //reuseNode true
                 //}
-            }
+            //}
             steps {
                 echo "The test message build-cat"
                 //sh 'gcc --version'
